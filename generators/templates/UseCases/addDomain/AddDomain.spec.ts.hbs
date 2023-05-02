@@ -1,0 +1,52 @@
+import MockDate from 'mockdate'
+
+import { mock, MockProxy } from 'jest-mock-extended'
+import { Add{{pascalCase name}}Repository } from '@/slices/{{camelCase name}}/repositories/contracts'
+import { mock{{pascalCase name}} } from '@/slices/{{camelCase name}}/entities/{{pascalCase name}}Entity.spec'
+import { Add{{pascalCase name}} } from './Add{{pascalCase name}}'
+
+describe('add{{pascalCase name}}', () => {
+  let sut: Add{{pascalCase name}}
+  let add{{pascalCase name}}Repository: MockProxy<Add{{pascalCase name}}Repository>
+  const fake{{pascalCase name}} = mock{{pascalCase name}}()
+
+  beforeAll(async () => {
+    MockDate.set(new Date())
+    add{{pascalCase name}}Repository = mock()
+    add{{pascalCase name}}Repository.add{{pascalCase name}}.mockResolvedValue(fake{{pascalCase name}})
+  })
+
+  beforeEach(async () => {
+    sut = new Add{{pascalCase name}}(add{{pascalCase name}}Repository)
+  })
+
+  afterAll(async () => {
+    MockDate.reset()
+  })
+
+  it('Should call add{{pascalCase name}} of Add{{pascalCase name}}Repository with correct values', async () => {
+    await sut.execute(fake{{pascalCase name}})
+    expect(add{{pascalCase name}}Repository.add{{pascalCase name}}).toHaveBeenCalledWith(fake{{pascalCase name}})
+    expect(add{{pascalCase name}}Repository.add{{pascalCase name}}).toBeCalledTimes(1)
+  })
+
+  it('Should return a new {{camelCase name}} created when add{{pascalCase name}}Repository insert it', async () => {
+    const {{camelCase name}} = await sut.execute(fake{{pascalCase name}})
+    expect({{camelCase name}}).toEqual(fake{{pascalCase name}})
+  })
+
+  it('Should return null a new {{camelCase name}} created when add{{pascalCase name}}Repository insert it', async () => {
+    add{{pascalCase name}}Repository.add{{pascalCase name}}.mockResolvedValueOnce(null)
+    const {{camelCase name}} = await sut.execute(fake{{pascalCase name}})
+    expect({{camelCase name}}).toBeFalsy()
+  })
+
+  it('Should rethrow if add{{pascalCase name}} of Add{{pascalCase name}}Repository throws', async () => {
+    add{{pascalCase name}}Repository.add{{pascalCase name}}.mockRejectedValueOnce(
+      new Error('any_error')
+    )
+    await expect(sut.execute(fake{{pascalCase name}})).rejects.toThrowError(
+      new Error('any_error')
+    )
+  })
+})

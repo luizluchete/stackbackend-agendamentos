@@ -1,0 +1,10 @@
+import { Add{{pascalCase name}}Repository } from '@/slices/{{camelCase name}}/repositories/contracts'
+import { {{pascalCase name}}Data, {{pascalCase name}}Entity } from '../../entities'
+
+export class Add{{pascalCase name}} {
+  constructor(private readonly repository: Add{{pascalCase name}}Repository) {}
+
+  async execute(data: {{pascalCase name}}Data): Promise<{{pascalCase name}}Entity | null> {
+    return this.repository.add{{pascalCase name}}(data)
+  }
+}

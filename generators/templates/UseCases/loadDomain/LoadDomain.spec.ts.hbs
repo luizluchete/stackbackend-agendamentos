@@ -1,0 +1,56 @@
+import MockDate from 'mockdate'
+
+import { mock, MockProxy } from 'jest-mock-extended'
+import { Load{{pascalCase name}}Repository } from '@/slices/{{camelCase name}}/repositories/contracts'
+import { mock{{pascalCase name}} } from '../../entities/{{pascalCase name}}Entity.spec'
+import { Query } from '@/app/type'
+import { Load{{pascalCase name}} } from './Load{{pascalCase name}}'
+
+describe('Load{{pascalCase name}}', () => {
+  let sut: Load{{pascalCase name}}
+  let fakeQuery: Query
+
+  let load{{pascalCase name}}Repository: MockProxy<Load{{pascalCase name}}Repository>
+  const fake{{pascalCase name}} = mock{{pascalCase name}}()
+
+  beforeAll(async () => {
+    MockDate.set(new Date())
+    load{{pascalCase name}}Repository = mock()
+    fakeQuery = { fields: { name: '123' }, options: {} }
+    load{{pascalCase name}}Repository.load{{pascalCase name}}.mockResolvedValue(fake{{pascalCase name}})
+  })
+
+  beforeEach(async () => {
+    sut = new Load{{pascalCase name}}(load{{pascalCase name}}Repository)
+  })
+
+  afterAll(async () => {
+    MockDate.reset()
+  })
+
+  it('should call Load{{pascalCase name}}Repository with corrrect values', async () => {
+    await sut.load(fakeQuery)
+    expect(load{{pascalCase name}}Repository.load{{pascalCase name}}).toHaveBeenCalledWith(fakeQuery)
+    expect(load{{pascalCase name}}Repository.load{{pascalCase name}}).toHaveBeenCalledTimes(1)
+  })
+
+  it('Should return a {{camelCase name}} loaded when Load{{pascalCase name}}Repository return it', async () => {
+    const {{camelCase name}} = await sut.load(fakeQuery)
+    expect({{camelCase name}}).toEqual(fake{{pascalCase name}})
+  })
+
+  it('Should return null loaded when Load{{pascalCase name}}Repository return it', async () => {
+    load{{pascalCase name}}Repository.load{{pascalCase name}}.mockResolvedValueOnce(null)
+    const {{camelCase name}} = await sut.load(fakeQuery)
+    expect({{camelCase name}}).toBeFalsy()
+  })
+
+  it('Should rethrow if load{{pascalCase name}} of Load{{pascalCase name}}Repository throws', async () => {
+    load{{pascalCase name}}Repository.load{{pascalCase name}}.mockRejectedValueOnce(
+      new Error('any_error')
+    )
+    await expect(sut.load(fakeQuery)).rejects.toThrowError(
+      new Error('any_error')
+    )
+  })
+})

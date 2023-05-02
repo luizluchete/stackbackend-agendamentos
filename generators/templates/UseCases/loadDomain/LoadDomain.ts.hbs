@@ -1,0 +1,10 @@
+import { Query } from '@/app/type'
+import { Load{{pascalCase name}}Repository } from '@/slices/{{camelCase name}}/repositories/contracts'
+
+export class Load{{pascalCase name}} {
+  constructor(private readonly repository: Load{{pascalCase name}}Repository) {}
+
+  async load(query: Query) {
+    return await this.repository.load{{pascalCase name}}(query)
+  }
+}
