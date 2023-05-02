@@ -1,0 +1,50 @@
+import MockDate from 'mockdate'
+import { {{pascalCase name}}Entity } from './{{camelCase name}}Entity'
+
+export const mock{{pascalCase name}} = (): {{pascalCase name}}Entity => ({
+  createdById: '123',
+  name: 'any_name_{{camelCase name}}',
+  active: true,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+})
+
+export const fake{{pascalCase name}}Paginated = {
+  total: 11,
+  data: [
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+    mock{{pascalCase name}}(),
+  ],
+}
+
+describe('{{pascalCase name}}', () => {
+  beforeAll(async () => {
+    MockDate.set(new Date())
+  })
+
+  afterAll(async () => {
+    MockDate.reset()
+  })
+
+  it('Can be created', () => {
+    const fake{{pascalCase name}} = mock{{pascalCase name}}()
+    const {{camelCase name}} = new {{pascalCase name}}Entity(fake{{pascalCase name}})
+    expect({{camelCase name}}).toBeTruthy()
+    expect({{camelCase name}}).toEqual({
+      ...fake{{pascalCase name}},
+      _id: undefined,
+      active: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })
+  })
+})
