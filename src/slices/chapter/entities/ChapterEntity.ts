@@ -1,4 +1,4 @@
-export type {{pascalCase name}}Data = {
+export type ChapterData = {
   _id?: string
   createdById: string
   name: string
@@ -7,18 +7,18 @@ export type {{pascalCase name}}Data = {
   updatedAt?: Date
 }
 
-export type {{pascalCase name}}Paginated = {
-  data: {{pascalCase name}}Data[]
+export type ChapterPaginated = {
+  data: ChapterData[]
   total: number
 }
 
-export class {{pascalCase name}}Entity {
+export class ChapterEntity {
   createdById: string
   name: string
   active?: boolean
   createdAt?: Date
   updatedAt?: Date
-  constructor(data: {{pascalCase name}}Data) {
+  constructor(data: ChapterData) {
     this.createdById = data.createdById
     this.name = data.name
     this.active = false

@@ -1,0 +1,11 @@
+import { Query } from '@/app/type'
+import { Load{{pascalCase name}}ByPageRepository } from '@/slices/{{camelCase name}}/repositories'
+import { {{pascalCase name}}Paginated } from '../../entities'
+
+export class Load{{pascalCase name}}ByPage {
+  constructor(private readonly repository: Load{{pascalCase name}}ByPageRepository) {}
+
+  async load(query: Query): Promise<{{pascalCase name}}Paginated | null> {
+    return await this.repository.load{{pascalCase name}}ByPage(query)
+  }
+}

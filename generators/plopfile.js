@@ -53,15 +53,26 @@ module.exports = function (plop) {
 const useCasesCreations = [
   {
     type: 'add',
-    path: '../src/slices/{{camelCase name}}/repositories/contracts/add{{pascalCase name}}Repository.ts',
-    templateFile:
-      './templates/repositories/contracts/addDomainRepository.ts.hbs',
+    path: '../src/slices/{{camelCase name}}/repositories/index.ts',
+    templateFile: './templates/repositories/index.ts.hbs',
   },
   {
     type: 'add',
-    path: '../src/slices/{{camelCase name}}/repositories/contracts/load{{pascalCase name}}Repository.ts',
+    path: '../src/slices/{{camelCase name}}/repositories/contracts/Add{{pascalCase name}}Repository.ts',
     templateFile:
-      './templates/repositories/contracts/loadDomainRepository.ts.hbs',
+      './templates/repositories/contracts/AddDomainRepository.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/repositories/contracts/Load{{pascalCase name}}Repository.ts',
+    templateFile:
+      './templates/repositories/contracts/LoadDomainRepository.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/repositories/contracts/Load{{pascalCase name}}ByPageRepository.ts',
+    templateFile:
+      './templates/repositories/contracts/LoadDomainByPageRepository.ts.hbs',
   },
   {
     type: 'add',
@@ -98,6 +109,23 @@ const useCasesCreations = [
     type: 'add',
     path: '../src/slices/{{camelCase name}}/useCases/load{{pascalCase name}}/index.ts',
     templateFile: './templates/useCases/loadDomain/index.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/load{{pascalCase name}}ByPage/Load{{pascalCase name}}ByPage.ts',
+    templateFile:
+      './templates/useCases/loadDomainByPage/loadDomainByPage.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/load{{pascalCase name}}ByPage/Load{{pascalCase name}}ByPage.spec.ts',
+    templateFile:
+      './templates/useCases/loadDomainByPage/loadDomainByPage.spec.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/load{{pascalCase name}}ByPage/index.ts',
+    templateFile: './templates/useCases/loadDomainByPage/index.ts.hbs',
   },
 ]
 

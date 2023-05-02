@@ -1,0 +1,61 @@
+import MockDate from 'mockdate'
+
+import { mock, MockProxy } from 'jest-mock-extended'
+import { Load{{pascalCase name}}ByPageRepository } from '@/slices/{{camelCase name}}/repositories/contracts'
+import { fake{{pascalCase name}}Paginated } from '../../entities/{{pascalCase name}}Entity.spec'
+import { Query } from '@/app/type'
+import { Load{{pascalCase name}}ByPage } from './Load{{pascalCase name}}ByPage'
+
+describe('Load{{pascalCase name}}ByPage', () => {
+  let sut: Load{{pascalCase name}}ByPage
+  let fakeQuery: Query
+
+  let load{{pascalCase name}}RepositoryByPage: MockProxy<Load{{pascalCase name}}ByPageRepository>
+
+  beforeAll(async () => {
+    MockDate.set(new Date())
+    load{{pascalCase name}}RepositoryByPage = mock()
+    fakeQuery = { fields: { name: '123' }, options: {} }
+    load{{pascalCase name}}RepositoryByPage.load{{pascalCase name}}ByPage.mockResolvedValue(
+      fake{{pascalCase name}}Paginated
+    )
+  })
+
+  beforeEach(async () => {
+    sut = new Load{{pascalCase name}}ByPage(load{{pascalCase name}}RepositoryByPage)
+  })
+
+  afterAll(async () => {
+    MockDate.reset()
+  })
+
+  it('should call Load{{pascalCase name}}ByPageRepository with corrrect values', async () => {
+    await sut.load(fakeQuery)
+    expect(
+      load{{pascalCase name}}RepositoryByPage.load{{pascalCase name}}ByPage
+    ).toHaveBeenCalledWith(fakeQuery)
+    expect(
+      load{{pascalCase name}}RepositoryByPage.load{{pascalCase name}}ByPage
+    ).toHaveBeenCalledTimes(1)
+  })
+
+  it('Should return a {{camelCase name}} loaded when Load{{pascalCase name}}ByPageRepository return it', async () => {
+    const result = await sut.load(fakeQuery)
+    expect(result).toEqual(fake{{pascalCase name}}Paginated)
+  })
+
+  it('Should return null loaded when Load{{pascalCase name}}ByPageRepository return it', async () => {
+    load{{pascalCase name}}RepositoryByPage.load{{pascalCase name}}ByPage.mockResolvedValueOnce(null)
+    const {{camelCase name}} = await sut.load(fakeQuery)
+    expect({{camelCase name}}).toBeFalsy()
+  })
+
+  it('Should rethrow if load{{pascalCase name}}ByPage of Load{{pascalCase name}}ByPageRepository throws', async () => {
+    load{{pascalCase name}}RepositoryByPage.load{{pascalCase name}}ByPage.mockRejectedValueOnce(
+      new Error('any_error')
+    )
+    await expect(sut.load(fakeQuery)).rejects.toThrowError(
+      new Error('any_error')
+    )
+  })
+})
