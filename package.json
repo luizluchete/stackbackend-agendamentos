@@ -27,5 +27,9 @@
   },
   "_moduleAliases": {
     "@": "dist"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0"
   }
 }
