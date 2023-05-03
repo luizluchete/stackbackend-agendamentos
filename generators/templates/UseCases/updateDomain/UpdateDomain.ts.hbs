@@ -1,0 +1,14 @@
+import { Update{{pascalCase name}}Repository } from '@/slices/{{camelCase name}}/repositories'
+import { {{pascalCase name}}Data, {{pascalCase name}}Entity } from '../../entities'
+import { Query } from '@/app/type'
+
+export class Update{{pascalCase name}} {
+  constructor(private readonly repository: Update{{pascalCase name}}Repository) {}
+
+  async execute(
+    query: Query,
+    data: {{pascalCase name}}Data
+  ): Promise<{{pascalCase name}}Entity | null> {
+    return await this.repository.update(query, data)
+  }
+}

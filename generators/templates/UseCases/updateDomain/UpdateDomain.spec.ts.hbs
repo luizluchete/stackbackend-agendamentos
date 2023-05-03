@@ -1,0 +1,57 @@
+import MockDate from 'mockdate'
+
+import { mock, MockProxy } from 'jest-mock-extended'
+import { Update{{pascalCase name}}Repository } from '@/slices/{{camelCase name}}/repositories'
+import { mock{{pascalCase name}} } from '@/slices/{{camelCase name}}/entities/{{pascalCase name}}Entity.spec'
+import { Update{{pascalCase name}} } from './Update{{pascalCase name}}'
+import { Query } from '@/app/type'
+
+describe('Update {{pascalCase name}}', () => {
+  let sut: Update{{pascalCase name}}
+  let update{{pascalCase name}}Repository: MockProxy<Update{{pascalCase name}}Repository>
+  const fake{{pascalCase name}} = mock{{pascalCase name}}()
+  const fakeQuery: Query = { fields: { _id: 'any_id' } }
+
+  beforeAll(async () => {
+    MockDate.set(new Date())
+    update{{pascalCase name}}Repository = mock()
+    update{{pascalCase name}}Repository.update.mockResolvedValue(fake{{pascalCase name}})
+  })
+
+  beforeEach(async () => {
+    sut = new Update{{pascalCase name}}(update{{pascalCase name}}Repository)
+  })
+
+  afterAll(async () => {
+    MockDate.reset()
+  })
+
+  it('Should call update{{pascalCase name}} of Update{{pascalCase name}}Repository with correct values', async () => {
+    await sut.execute(fakeQuery, fake{{pascalCase name}})
+    expect(update{{pascalCase name}}Repository.update).toHaveBeenCalledWith(
+      fakeQuery,
+      fake{{pascalCase name}}
+    )
+    expect(update{{pascalCase name}}Repository.update).toBeCalledTimes(1)
+  })
+
+  it('Should return a new {{camelCase name}} created when update{{pascalCase name}}Repository insert it', async () => {
+    const {{camelCase name}} = await sut.execute(fakeQuery, fake{{pascalCase name}})
+    expect({{camelCase name}}).toEqual(fake{{pascalCase name}})
+  })
+
+  it('Should return null a new {{camelCase name}} created when update{{pascalCase name}}Repository insert it', async () => {
+    update{{pascalCase name}}Repository.update.mockResolvedValueOnce(null)
+    const {{camelCase name}} = await sut.execute(fakeQuery, fake{{pascalCase name}})
+    expect({{camelCase name}}).toBeFalsy()
+  })
+
+  it('Should rethrow if update{{pascalCase name}} of Update{{pascalCase name}}Repository throws', async () => {
+    update{{pascalCase name}}Repository.update.mockRejectedValueOnce(
+      new Error('any_error')
+    )
+    await expect(sut.execute(fakeQuery, fake{{pascalCase name}})).rejects.toThrowError(
+      new Error('any_error')
+    )
+  })
+})

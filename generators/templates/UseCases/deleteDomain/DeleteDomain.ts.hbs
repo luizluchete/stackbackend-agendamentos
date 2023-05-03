@@ -1,0 +1,10 @@
+import { Delete{{pascalCase name}}Repository } from '@/slices/{{camelCase name}}/repositories'
+import { Query } from '@/app/type'
+
+export class Delete{{pascalCase name}} {
+  constructor(private readonly repository: Delete{{pascalCase name}}Repository) {}
+
+  async execute(query: Query): Promise<void> {
+    await this.repository.delete(query)
+  }
+}

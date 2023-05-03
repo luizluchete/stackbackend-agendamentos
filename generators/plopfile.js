@@ -76,6 +76,18 @@ const useCasesCreations = [
   },
   {
     type: 'add',
+    path: '../src/slices/{{camelCase name}}/repositories/contracts/Delete{{pascalCase name}}Repository.ts',
+    templateFile:
+      './templates/repositories/contracts/DeleteDomainRepository.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/repositories/contracts/Update{{pascalCase name}}Repository.ts',
+    templateFile:
+      './templates/repositories/contracts/UpdateDomainRepository.ts.hbs',
+  },
+  {
+    type: 'add',
     path: '../src/slices/{{camelCase name}}/repositories/contracts/index.ts',
     templateFile: './templates/repositories/contracts/index.ts.hbs',
   },
@@ -126,6 +138,38 @@ const useCasesCreations = [
     type: 'add',
     path: '../src/slices/{{camelCase name}}/useCases/load{{pascalCase name}}ByPage/index.ts',
     templateFile: './templates/useCases/loadDomainByPage/index.ts.hbs',
+  },
+
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/delete{{pascalCase name}}/Delete{{pascalCase name}}.ts',
+    templateFile: './templates/useCases/deleteDomain/DeleteDomain.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/delete{{pascalCase name}}/Delete{{pascalCase name}}.spec.ts',
+    templateFile: './templates/useCases/deleteDomain/DeleteDomain.spec.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/delete{{pascalCase name}}/index.ts',
+    templateFile: './templates/useCases/deleteDomain/index.ts.hbs',
+  },
+
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/update{{pascalCase name}}/Update{{pascalCase name}}.ts',
+    templateFile: './templates/useCases/updateDomain/UpdateDomain.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/update{{pascalCase name}}/Update{{pascalCase name}}.spec.ts',
+    templateFile: './templates/useCases/updateDomain/UpdateDomain.spec.ts.hbs',
+  },
+  {
+    type: 'add',
+    path: '../src/slices/{{camelCase name}}/useCases/update{{pascalCase name}}/index.ts',
+    templateFile: './templates/useCases/updateDomain/index.ts.hbs',
   },
 ]
 

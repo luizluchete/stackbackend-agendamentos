@@ -1,0 +1,42 @@
+import MockDate from 'mockdate'
+
+import { mock, MockProxy } from 'jest-mock-extended'
+import { Delete{{pascalCase name}}Repository } from '@/slices/{{camelCase name}}/repositories'
+import { Delete{{pascalCase name}} } from './DeleteDomain'
+import { Query } from '@/app/type'
+
+describe('Delete {{pascalCase name}}', () => {
+  let sut: Delete{{pascalCase name}}
+  let delete{{pascalCase name}}Repository: MockProxy<Delete{{pascalCase name}}Repository>
+
+  const fakeQuery: Query = { fields: { _id: 'any_id' } }
+
+  beforeAll(async () => {
+    MockDate.set(new Date())
+    delete{{pascalCase name}}Repository = mock()
+    delete{{pascalCase name}}Repository.delete.mockResolvedValue()
+  })
+
+  beforeEach(async () => {
+    sut = new Delete{{pascalCase name}}(delete{{pascalCase name}}Repository)
+  })
+
+  afterAll(async () => {
+    MockDate.reset()
+  })
+
+  it('Should call delete{{pascalCase name}} of Delete{{pascalCase name}}Repository with correct values', async () => {
+    await sut.execute(fakeQuery)
+    expect(delete{{pascalCase name}}Repository.delete).toHaveBeenCalledWith(fakeQuery)
+    expect(delete{{pascalCase name}}Repository.delete).toBeCalledTimes(1)
+  })
+
+  it('Should rethrow if delete{{pascalCase name}} of Delete{{pascalCase name}}Repository throws', async () => {
+    delete{{pascalCase name}}Repository.delete.mockRejectedValueOnce(
+      new Error('any_error')
+    )
+    await expect(sut.execute(fakeQuery)).rejects.toThrowError(
+      new Error('any_error')
+    )
+  })
+})

@@ -1,0 +1,5 @@
+import { Query } from '@/app/type'
+
+export interface Delete{{pascalCase name}}Repository {
+  delete(query: Query): Promise<void>
+}

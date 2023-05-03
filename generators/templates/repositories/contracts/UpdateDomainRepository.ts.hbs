@@ -1,0 +1,6 @@
+import { Query } from '@/app/type'
+import { {{pascalCase name}}Data } from '../../entities'
+
+export interface Update{{pascalCase name}}Repository {
+  update(query: Query, data: {{pascalCase name}}Data): Promise<{{pascalCase name}}Data | null>
+}

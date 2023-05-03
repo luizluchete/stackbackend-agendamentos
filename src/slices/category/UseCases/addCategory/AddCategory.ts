@@ -5,6 +5,6 @@ export class AddCategory {
   constructor(private readonly repository: AddCategoryRepository) {}
 
   async execute(data: CategoryData): Promise<CategoryEntity | null> {
-    return this.repository.addCategory(data)
+    return await this.repository.addCategory(data)
   }
 }
