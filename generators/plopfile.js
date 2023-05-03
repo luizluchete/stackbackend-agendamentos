@@ -1,4 +1,15 @@
 module.exports = function (plop) {
+  plop.setGenerator('all', {
+    description: 'Create a new domain',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'what is the name of the domain ?',
+      },
+    ],
+    actions: [...entitiesCreations, ...useCasesCreations],
+  })
   plop.setGenerator('entities', {
     description: 'Create a new entity',
     prompts: [
@@ -21,6 +32,7 @@ module.exports = function (plop) {
     ],
     actions: [...useCasesCreations],
   })
+
   plop.setGenerator('test', {
     description: 'Create a new test',
     prompts: [
