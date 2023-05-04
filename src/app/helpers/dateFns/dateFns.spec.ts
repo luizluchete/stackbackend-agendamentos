@@ -8,7 +8,7 @@ import {
   differenceInDays,
   differenceInMinutes,
   eachHourInterval,
-  eachMinuteInterval,
+  eachMinuteOfInterval,
   endOfDay,
   formatISO,
   handleTimezone,
@@ -167,8 +167,8 @@ describe('dateFns functions', () => {
 
     expect(dateTest.length).toBe(25)
   })
-  it('eachminuteInterval function in ISO Format', () => {
-    const minuteTest = eachMinuteInterval(
+  it('eachMinuteOfInterval function in ISO Format', () => {
+    const minuteTest = eachMinuteOfInterval(
       new Date(2023, 4, 11, 2, 10),
       new Date(2023, 4, 11, 2, 20),
       {

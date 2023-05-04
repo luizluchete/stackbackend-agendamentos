@@ -117,7 +117,7 @@ export const eachHourInterval = (
   return eachHourOfIntervalDateFns({ end, start }, options)
 }
 
-export const eachMinuteInterval = (
+export const eachMinuteOfInterval = (
   start: number | Date,
   end: number | Date,
   options: Options
